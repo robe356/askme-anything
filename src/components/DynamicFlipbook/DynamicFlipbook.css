@@ -1,15 +1,17 @@
 .flipbook-container {
   width: 100%;
-  max-width: 1200px; /* Increased to accommodate two pages */
+  max-width: 1200px;
   margin: 0 auto;
   perspective: 2000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .flipbook {
   position: relative;
-  width: 100%;
-  /* A4 aspect ratio (297mm / 210mm ≈ 1.414) multiplied by 0.5 for landscape */
-  height: calc((210mm * 1.414) * 0.7);
+  width: calc(210mm * 2 * 0.7); /* Two A4 pages side by side */
+  height: calc(297mm * 0.7); /* A4 height */
   transform-style: preserve-3d;
   display: flex;
   justify-content: center;
@@ -18,7 +20,7 @@
 
 .page {
   position: absolute;
-  width: calc(210mm * 0.7); /* 70% of A4 width for better screen viewing */
+  width: calc(210mm * 0.7);
   height: 100%;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -28,13 +30,12 @@
   background-repeat: no-repeat;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  left: 50%;
-  margin-left: calc(-210mm * 0.35); /* Half of the page width */
-  transform: translateX(calc(-100% * var(--page-offset, 0)));
+  backface-visibility: hidden;
+  transform: translateX(calc(100% * var(--page-offset, 0)));
 }
 
 .page.turned {
-  transform: rotateY(-180deg);
+  transform: rotateY(-180deg) translateX(100%);
 }
 
 .page-content {
@@ -45,6 +46,8 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .editable-text {
@@ -89,12 +92,12 @@
 }
 
 @media (max-width: 768px) {
-  .page {
-    width: calc(210mm * 0.5); /* Smaller width for mobile */
-    margin-left: calc(-210mm * 0.25);
+  .flipbook {
+    width: calc(210mm * 0.5);
+    height: calc(297mm * 0.5);
   }
   
-  .flipbook {
-    height: calc((210mm * 1.414) * 0.5);
+  .page {
+    width: calc(210mm * 0.5);
   }
 }
