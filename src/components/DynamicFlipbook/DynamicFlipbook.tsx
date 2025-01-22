@@ -21,6 +21,7 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
 }) => {
   const [texts, setTexts] = useState(initialTexts);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isShifted, setIsShifted] = useState(false);
 
   useEffect(() => {
     console.log('DynamicFlipbook mounted with images:', {
@@ -29,6 +30,11 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
       middlePageImage
     });
   }, [coverImage, backCoverImage, middlePageImage]);
+
+  useEffect(() => {
+    // Shift the book to the right after the first page is turned
+    setIsShifted(currentPage > 0);
+  }, [currentPage]);
 
   const updatePageText = (pageNumber: number, fieldId: string, newText: string) => {
     setTexts(prev => ({
@@ -56,7 +62,7 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
 
   return (
     <div className={cn("flipbook-container", className)}>
-      <div className="flipbook">
+      <div className={cn("flipbook", isShifted && "shifted")}>
         {Array.from({ length: pageCount }).map((_, index) => (
           <div
             key={index}
