@@ -1,6 +1,6 @@
 .flipbook-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px; /* Increased to accommodate two pages */
   margin: 0 auto;
   perspective: 2000px;
 }
@@ -8,13 +8,17 @@
 .flipbook {
   position: relative;
   width: 100%;
-  height: 500px;
+  /* A4 aspect ratio (297mm / 210mm ≈ 1.414) multiplied by 0.5 for landscape */
+  height: calc((210mm * 1.414) * 0.7);
   transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .page {
   position: absolute;
-  width: 100%;
+  width: calc(210mm * 0.7); /* 70% of A4 width for better screen viewing */
   height: 100%;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -24,6 +28,8 @@
   background-repeat: no-repeat;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  margin-left: calc(-210mm * 0.35); /* Half of the page width */
 }
 
 .page.turned {
@@ -79,4 +85,15 @@
 
 .flipbook-controls button:hover:not(:disabled) {
   background-color: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+  .page {
+    width: calc(210mm * 0.5); /* Smaller width for mobile */
+    margin-left: calc(-210mm * 0.25);
+  }
+  
+  .flipbook {
+    height: calc((210mm * 1.414) * 0.5);
+  }
 }
