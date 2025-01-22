@@ -22,6 +22,14 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
   const [texts, setTexts] = useState(initialTexts);
   const [currentPage, setCurrentPage] = useState(0);
 
+  useEffect(() => {
+    console.log('DynamicFlipbook mounted with images:', {
+      coverImage,
+      backCoverImage,
+      middlePageImage
+    });
+  }, [coverImage, backCoverImage, middlePageImage]);
+
   const updatePageText = (pageNumber: number, fieldId: string, newText: string) => {
     setTexts(prev => ({
       ...prev,
@@ -40,6 +48,12 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
     return middlePageImage;
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLDivElement, Event>) => {
+    console.error('Failed to load image for page');
+    const target = e.target as HTMLDivElement;
+    target.style.backgroundColor = '#f0f0f0';
+  };
+
   return (
     <div className={cn("flipbook-container", className)}>
       <div className="flipbook">
@@ -52,6 +66,7 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
               currentPage > index && "turned"
             )}
             style={{ backgroundImage: `url(${getPageBackground(index)})` }}
+            onError={handleImageError}
           >
             <div className="page-content">
               <div
