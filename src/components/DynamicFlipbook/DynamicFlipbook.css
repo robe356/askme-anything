@@ -30,6 +30,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   left: 50%;
   margin-left: calc(-210mm * 0.35); /* Half of the page width */
+  transform: translateX(calc(-100% * var(--page-offset, 0)));
 }
 
 .page.turned {
