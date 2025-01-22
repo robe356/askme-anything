@@ -1,11 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { DynamicFlipbook } from "@/components/DynamicFlipbook/DynamicFlipbook";
 
 const Index = () => {
+  // Example initial texts for the flipbook
+  const initialTexts = {
+    'page0-main': 'Welcome to our Story',
+    'page0-secondary': 'Click to edit this text',
+    'page1-main': 'This is page 1',
+    'page1-secondary': 'Add your content here',
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen p-8 bg-gray-50">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8">Interactive Flipbook</h1>
+        <DynamicFlipbook
+          pageCount={5}
+          coverImage="/placeholder.svg"
+          backCoverImage="/placeholder.svg"
+          middlePageImage="/placeholder.svg"
+          initialTexts={initialTexts}
+          className="mb-8"
+        />
       </div>
     </div>
   );

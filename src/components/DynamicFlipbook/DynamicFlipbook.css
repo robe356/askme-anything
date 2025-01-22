@@ -1,0 +1,82 @@
+.flipbook-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  perspective: 2000px;
+}
+
+.flipbook {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  transform-style: preserve-3d;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page.turned {
+  transform: rotateY(-180deg);
+}
+
+.page-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+}
+
+.editable-text {
+  min-height: 100px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  outline: none;
+  cursor: text;
+}
+
+.editable-text.secondary {
+  min-height: 50px;
+}
+
+.flipbook-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.flipbook-controls button {
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.flipbook-controls button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.flipbook-controls button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
