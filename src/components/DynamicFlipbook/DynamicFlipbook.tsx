@@ -23,9 +23,6 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    // Center between pages 0 and 1 on initial render
-    setCurrentPage(0.5);
-    
     console.log('DynamicFlipbook mounted with images:', {
       coverImage,
       backCoverImage,
@@ -68,10 +65,7 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
               currentPage === index && "current",
               currentPage > index && "turned"
             )}
-            style={{ 
-              backgroundImage: `url(${getPageBackground(index)})`,
-              '--page-offset': index - currentPage
-            } as React.CSSProperties}
+            style={{ backgroundImage: `url(${getPageBackground(index)})` }}
             onError={handleImageError}
           >
             <div className="page-content">
@@ -102,7 +96,7 @@ export const DynamicFlipbook: React.FC<FlipbookProps> = ({
         >
           Previous
         </button>
-        <span>Page {Math.ceil(currentPage + 1)} of {pageCount}</span>
+        <span>Page {currentPage + 1} of {pageCount}</span>
         <button
           onClick={() => setCurrentPage(prev => Math.min(pageCount - 1, prev + 1))}
           disabled={currentPage === pageCount - 1}
