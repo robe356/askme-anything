@@ -9,10 +9,12 @@ const Index = () => {
     'page1-secondary': 'Add your content here',
   };
 
-  // Using data URLs for placeholder images to ensure they always work
-  const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23f0f0f0'/%3E%3Ctext x='50' y='50' font-family='Arial' font-size='14' fill='%23666' text-anchor='middle' dy='.3em'%3EPlaceholder%3C/text%3E%3C/svg%3E";
+  // Using Unsplash images as reliable placeholders
+  const coverImage = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80";
+  const middlePageImage = "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80";
+  const backCoverImage = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80";
 
-  console.log('Rendering Index component with placeholder image');
+  console.log('Rendering Index component with Unsplash placeholder images');
 
   return (
     <div className="min-h-screen p-8 bg-gray-50">
@@ -20,9 +22,9 @@ const Index = () => {
         <h1 className="text-4xl font-bold text-center mb-8">Interactive Flipbook</h1>
         <DynamicFlipbook
           pageCount={5}
-          coverImage={placeholderImage}
-          backCoverImage={placeholderImage}
-          middlePageImage={placeholderImage}
+          coverImage={coverImage}
+          backCoverImage={backCoverImage}
+          middlePageImage={middlePageImage}
           initialTexts={initialTexts}
           className="mb-8"
         />
