@@ -34,7 +34,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   left: 50%;
   margin-left: calc(-210mm * 0.35);
-  backface-visibility: hidden;
+  backface-visibility: visible;
 }
 
 .page.turned {
@@ -42,6 +42,7 @@
 }
 
 .page-content {
+  position: relative;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -49,6 +50,7 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
+  backface-visibility: hidden;
 }
 
 .editable-text {
@@ -94,7 +96,7 @@
 
 @media (max-width: 768px) {
   .page {
-    width: calc(210mm * 0.5); /* Smaller width for mobile */
+    width: calc(210mm * 0.5);
     margin-left: calc(-210mm * 0.25);
   }
   
